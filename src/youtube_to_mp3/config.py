@@ -1,0 +1,6 @@
+YOUTUBE_API_KEY = "your_api_key_here"
+DEFAULT_OUTPUT_FORMAT = "mp3"
+DEFAULT_DOWNLOAD_PATH = "downloads/"
+DEFAULT_VIDEO_QUALITY = "high"
+LOGGING_LEVEL = "INFO"
+LOGGING_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
