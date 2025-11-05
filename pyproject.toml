@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "video-to-audio-py"
+version = "0.1.0"
+description = "A Python application to convert video files to audio using CustomTkinter for the GUI."
+authors = ["Your Name <youremail@example.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+customtkinter = "^0.1.0"
+ffmpeg-python = "^0.2.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
