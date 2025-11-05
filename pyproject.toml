@@ -2,7 +2,7 @@
 name = "video-to-audio-py"
 version = "0.1.0"
 description = "A Python application to convert video files to audio using CustomTkinter for the GUI."
-authors = ["Your Name <youremail@example.com>"]
+authors = Victor Medeiros victormedeirosd7m5@outlook.com
 license = "MIT"
 
 [tool.poetry.dependencies]
