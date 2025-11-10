@@ -1,21 +1,15 @@
 import argparse
 from youtube_to_mp3.downloader import download_video
-from youtube_to_mp3.converter import convert_to_mp3
+import os
 
 def main():
-    parser = argparse.ArgumentParser(description="youTube to MP3 Converter")
-    parser.add_argument("url", help="The URL of the Youtube video to convert")
-    parser.add_argument("-o", "--output", help="Output file name (without extension)", default="output")
-
+    parser = argparse.ArgumentParser(description="YouTube to MP3")
+    parser.add_argument("url", help="URL do vídeo")
+    parser.add_argument("-d", "--dir", help="Pasta de saída", default=os.path.join(os.path.expanduser("~"), "Downloads"))
     args = parser.parse_args()
-
-    print(f"Downloading video from {args.url}...")
-    video_file = download_video(args.url)
-
-    print(f"Converting {video_file} to MP3...")
-    mp3_file = convert_to_mp3(video_file, args.output)
-
-    print(f"Conversion complete! MP3 file saved as {mp3_file}")
+    print("Baixando e convertendo...")
+    mp3_path = download_video(args.url, args.dir)
+    print(f"Concluído: {mp3_path}")
 
 if __name__ == "__main__":
     main()

@@ -1,10 +1,13 @@
 import os
+import shutil
 
 def download_video(video_url, output_path):
     try:
         import yt_dlp as ytdl
     except Exception:
         raise RuntimeError("yt-dlp não está instalado. Instale com: pip install yt-dlp")
+    if not shutil.which("ffmpeg"):
+        raise RuntimeError("ffmpeg não encontrado no PATH")
     os.makedirs(output_path, exist_ok=True)
     ydl_opts = {
         'format': 'bestaudio/best',
@@ -16,6 +19,7 @@ def download_video(video_url, output_path):
         }],
         'quiet': True,
         'no_warnings': True,
+        'noplaylist': True,
     }
     with ytdl.YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(video_url, download=True)

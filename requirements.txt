@@ -1,3 +1,4 @@
 CustomTkinter
 ffmpeg-python
 Pillow
+yt-dlp
