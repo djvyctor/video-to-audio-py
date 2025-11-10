@@ -1,7 +1,7 @@
 import os
 import shutil
 
-def download_video(video_url, output_path):
+def download_video(video_url, output_path, progress_callback=None):
     try:
         import yt_dlp as ytdl
     except Exception:
@@ -9,6 +9,15 @@ def download_video(video_url, output_path):
     if not shutil.which("ffmpeg"):
         raise RuntimeError("ffmpeg não encontrado no PATH")
     os.makedirs(output_path, exist_ok=True)
+    
+    def progress_hook(d):
+        if progress_callback and d['status'] == 'downloading':
+            try:
+                percent = d.get('_percent_str', '0%').strip().replace('%', '')
+                progress_callback(float(percent))
+            except:
+                pass
+    
     ydl_opts = {
         'format': 'bestaudio/best',
         'outtmpl': os.path.join(output_path, '%(title)s.%(ext)s'),
@@ -20,6 +29,7 @@ def download_video(video_url, output_path):
         'quiet': True,
         'no_warnings': True,
         'noplaylist': True,
+        'progress_hooks': [progress_hook],
     }
     with ytdl.YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(video_url, download=True)
