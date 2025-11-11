@@ -31,8 +31,7 @@ class App(tk.Tk):
     def _build(self):
         pad = {'padx': 20, 'pady': 8}
         ttk.Label(self, text="URL do YouTube", style='Dark.TLabel').pack(anchor='w', **pad)
-        url_entry = ttk.Entry(self, textvariable=self.url_var, style='Dark.TEntry', width=70)
-        url_entry.pack(fill='x', **pad)
+        ttk.Entry(self, textvariable=self.url_var, style='Dark.TEntry', width=70).pack(fill='x', **pad)
         
         ttk.Label(self, text="Pasta de saída", style='Dark.TLabel').pack(anchor='w', **pad)
         dir_frame = ttk.Frame(self, style='Dark.TFrame')
@@ -70,9 +69,9 @@ class App(tk.Tk):
     def _worker(self, url, outdir):
         try:
             path = download_video(url, outdir, progress_callback=lambda p: self.after(0, self._update_progress, p))
-            self.after(0, lambda: self._done_ok(path))
-        except Exception as e:
-            self.after(0, lambda: self._done_err(str(e)))
+            self.after(0, self._done_ok, path)
+        except Exception as err:
+            self.after(0, self._done_err, str(err))
 
     def _done_ok(self, path):
         self.progress_var.set(100)
