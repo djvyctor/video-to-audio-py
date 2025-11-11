@@ -4,8 +4,12 @@ __pycache__/
 venv/
 env/
 .venv/
+venv.bak/
+env.bak/
 .vscode/
 .idea/
+*.sublime-workspace
+*.sublime-project
 *.log
 *.pot
 *.pyc
@@ -15,4 +19,13 @@ Thumbs.db
 *.egg-info/
 dist/
 build/
+*.spec
 *.sqlite3
+bin/
+*.exe
+*.dll
+.env
+.env.*
+*.tmp
+*.swp
+*~
